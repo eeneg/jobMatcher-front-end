@@ -3,7 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://eeneg.github.io/jobMatcher-front-end",
+  "homepage": "https://eeneg.github.io/jobMatcher-front-end/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eeneg/jobMatcher-front-end.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
