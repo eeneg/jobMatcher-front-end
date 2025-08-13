@@ -22,7 +22,9 @@ function App() {
             <h4 className="text-lg mb-6 text-white">
               UPLOAD YOUR RESUME
             </h4>
-            <button type='button' className="p-4 rounded bg-red-500 hover:bg-red-700 text-white">
+            <button onClick={function(){
+              console.log('asd')
+            }} type='button' className="p-4 rounded bg-red-500 hover:bg-red-700 text-white">
               <NewspaperIcon className='h-6 w-6 text-red-500 inline-block text-white mr-2' />
               SELECT RESUME
             </button>
