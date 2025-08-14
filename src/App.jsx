@@ -13,14 +13,15 @@ function App() {
     if (!file) return;
 
     const formData = new FormData();
-    formData.append('resume', file);
+
+    formData.append('file', file, file.name);
 
     try {
       const res = await fetch('https://natalis3405-jobmatcher.hf.space/upload-cv', {
         method: 'POST',
         body: formData
       });
-      
+
       if (!res.ok) {
         const msg = await res.text();
         throw new Error(`HTTP ${res.status}: ${msg}`);
