@@ -8,6 +8,32 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('resume', file);
+
+    try {
+      const res = await fetch('https://natalis3405-jobmatcher.hf.space/upload-cv', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (!res.ok) {
+        const msg = await res.text();
+        throw new Error(`HTTP ${res.status}: ${msg}`);
+      }
+
+      const data = await res.json();
+      console.log('Parsed resume:', data);
+    } catch (err) {
+      console.error('Upload error:', err);
+      alert('Resume upload failed. Try again.');
+    }
+  }
+
   return (
     <>
       <header className='flex p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-bold text-lg'>
@@ -24,12 +50,11 @@ function App() {
             <h4 className="text-lg mb-6 text-white">
               UPLOAD YOUR RESUME
             </h4>
-            <button onClick={function(){
-              console.log('asd')
-            }} type='button' className="p-4 rounded bg-red-500 hover:bg-red-700 text-white">
+            <input type='file' onChange={handleFileUpload} className="hidden" id="resume-upload" />
+            <label htmlFor="resume-upload" className="p-4 rounded bg-red-500 hover:bg-red-700 text-white cursor-pointer">
               <NewspaperIcon className='h-6 w-6 text-red-500 inline-block text-white mr-2' />
               SELECT RESUME
-            </button>
+            </label>
           </div>
         </div>
 
